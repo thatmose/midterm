@@ -3,6 +3,6 @@ get '/' do
   erb :index
 end
 
-get '/market' do
-  erb :market
-end
+# get '/market' do
+#   erb :market
+# end
