@@ -100,12 +100,14 @@ post "/books" do
     rating: params[:rating],
     review: params[:review],
     book_id: @book.id,
-    user_id: current_user[:id])
+    user_id: current_user.id)
   @post.save
   @picture = Picture.new(
     url: params[:url],
     book_id: @book.id)
   @picture.save
+  current_user[:books_contributed] += 1
+  current_user.save
   redirect "/books/new"
 end
 
