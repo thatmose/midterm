@@ -114,6 +114,7 @@ post "/books/claim" do
   end
 end
 
-# get '/market' do
-#   erb :market
-# end
+get '/market' do
+  @posts = Post.all.order("created_at DESC")
+  erb :"/market"
+end
