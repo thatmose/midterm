@@ -137,3 +137,7 @@ get '/market' do
   @posts = Post.all.order("created_at DESC")
   erb :"/market"
 end
+
+get '/form' do 
+  erb :"/form"
+end

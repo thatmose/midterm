@@ -1,25 +1,54 @@
-.book-back{
-	padding-left: 20em;
+.back{
+	margin: 5em;
 }
-.book-info{
-	margin: 10em;
+
+.field{
+	margin: 20px;
 }
-.book-pic{
-	max-height: 30em;
-	margin-right: 15px;
-}
+
 .column{
 	display: table-cell;
 	padding: 10px;
 }
+
 .claim-container{
 	vertical-align: bottom;
 	width: 25em;
 }
+
 .claim{
 	position: relative;
-	left: 75em;
 }
+
+.rating {
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+.rating-star,
+.rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -16px;
+}
+
 @media screen and (max-width: 55em) {
 .column{
 	display: inherit;
