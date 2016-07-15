@@ -1,13 +1,14 @@
+require 'pry'
 enable :sessions
 
 helpers do
-  # def current_user
-  #   @current_user ||= User.find(session[:user_id])
-  # end
-
   def current_user
-    @user = User.find(6)
+    @current_user ||= User.find(session[:user_id])
   end
+
+  # def current_user
+  #   @user = User.find(6)
+  # end
   #Don\t know if we will use this yet
   # def logged_in?
   #   current_user != nil
@@ -44,13 +45,24 @@ post "/signup" do
   end
 end
 
-get "/login" do
-  erb :"/sessions/login"
+get '/login' do
+  erb :'sessions/login'
 end
 
-get "/logout" do
-  session.clear
-  redirect "/"
+post '/login' do
+  @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/books'
+    else
+      flash[:login_notice] = "username does not exist or incorrect password!"
+       erb :'session/login'
+    end
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/login' 
 end
 
 post "/sessions" do
@@ -81,15 +93,20 @@ end
 post "/books" do
   @book = Book.new(
     title: params[:title],
+    author: params[:author],
+    genre: params[:genre])
+  @book.save
+  @post = Post.new(
     rating: params[:rating],
-    genre: params[:genre],
+    review: params[:review],
+    book_id: @book.id,
+    user_id: current_user[:id])
+  @post.save
+  @picture = Picture.new(
     url: params[:url],
-    review: params[:review])
-  if @song.save
-    redirect "/books"
-  else
-    erb :"books/new"
-  end
+    book_id: @book.id)
+  @picture.save
+  redirect "/books/new"
 end
 
 get "/books/borrowed" do
