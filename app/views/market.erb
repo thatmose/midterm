@@ -8,16 +8,13 @@
     
     <% @posts.each do |post|%>
     <div class="jumbotron book-back">
-      <!-- <div class="row"> -->
       <div class="column book-info">
         <a href="#" class="pull-left book-thumbnail" >
           <img src="https://jlongroadmedia.files.wordpress.com/2013/12/catchingfire.jpg" alt="..." class="book-pic">
         </a>
         <h1><%= post.book.title %><small> (<%= post.book.author %>)</small></h1>
-        <!-- <p>&#9733 &#9733 &#9733</p> -->
-        <!-- <p><%= post.rating %></p> -->
         <% (0...post.rating).each do  %>
-          &#9733
+        &#9733
         <% end %>
         <p><%= post.review %></p>
       </div>
