@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715013909) do
+ActiveRecord::Schema.define(version: 20160715072519) do
 
   create_table "books", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160715013909) do
     t.string   "genre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "available",  default: true
   end
 
   create_table "borrowed_books", force: :cascade do |t|
