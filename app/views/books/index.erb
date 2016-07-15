@@ -1,0 +1,33 @@
+<ul class="books">
+	<% @books.each do |book| %>
+	<li class="book">
+		<dl class="book_info">
+			<dt>Title</dt>
+			<dd><%= book.title %></dd>
+			<% unless book.pictures.empty? %>
+			    <dt>URL</dt>
+				<dd><a href="<%= book.pictures.url.first %>" target = "_blank"><%= book.pictures.url.first %></a></dd>
+			<% end %>
+			<dt>Genre</dt>
+			<dd><%= book.genre %></dd>
+			<form action="books/claim" method="POST">
+				<input type="hidden" name ="book_id" value="<%= book.id %>">
+				<button type="submit" class="btn btn-default" aria-label="Left Align">Claim
+				</button> 
+			</form>
+		</dl>
+		<ul class = "book_reviews">
+			<% book.posts.each do |post| %>
+				<li class="book_review">
+					<dl class="book_review_info">
+						<dt>Rating</dt>
+						<dd><%= post.rating %></dd>
+						<dt>Review</dt>
+						<dd><%= post.review %></dd>
+					</dl>
+				</li>
+			<% end %>
+		</ul>
+	</li>
+	<% end %>
+</ul>

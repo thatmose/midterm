@@ -1,10 +1,13 @@
 enable :sessions
 
 helpers do
-  def current_user
-    @current_user ||= User.find(session[:user_id])
-  end
+  # def current_user
+  #   @current_user ||= User.find(session[:user_id])
+  # end
 
+  def current_user
+    @user = User.find(6)
+  end
   #Don\t know if we will use this yet
   # def logged_in?
   #   current_user != nil
@@ -66,4 +69,47 @@ get "/profile" do
 end
 
 
+get "/books/new" do
+  erb :"/books/new"
+end
 
+get "/books" do
+  @books = Book.all
+  erb :"books/index"
+end
+
+post "/books" do
+  @book = Book.new(
+    title: params[:title],
+    rating: params[:rating],
+    genre: params[:genre],
+    url: params[:url],
+    review: params[:review])
+  if @song.save
+    redirect "/books"
+  else
+    erb :"books/new"
+  end
+end
+
+get "/books/borrowed" do
+  @my_books = Book.joins(:borrowed_book).where(id: current_user.id)
+  # Replace magic user with current user id
+  erb :"/books/borrowed"
+end
+
+# Can try and use partial for the books and borrowed pages. Almost identical
+
+post "/books/claim" do
+  #need to update the book table
+  @borrowed_book = BorrowedBook.new(
+    user_id: current_user.id,
+    book_id: params[:book_id])
+  if @borrowed_book.save!
+    Book.find(params[:book_id]).update(available: false)
+    redirect "/books"
+  else
+    flash.now[:claim_error] = "Something went wrong!"
+    erb :"/books"
+  end
+end
