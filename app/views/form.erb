@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Form Page</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/form.css">
+	</head>
+	<body>
+		<div class="jumbotron book-back">
+			<div class="column book-info">
+				<a href="#" class="pull-left book-thumbnail" >
+					<img src="https://jlongroadmedia.files.wordpress.com/2013/12/catchingfire.jpg" alt="..." class="book-pic">
+				</a>
+				<h1>Book Title<small> (Author)</small></h1>
+				<p>&#9733 &#9733 &#9733</p>
+				<form action="index.php" method="post" enctype="multipart/form-data">
+					<input type="file" name="file1"/><br>
+					<input type="submit" value="Upload Photo"/>
+				</form>
+			</div>
+			
+			<div class="column claim-container">
+				<form>
+					Title:<br>
+					<input type="text" class="form-control" name="Title" placeholder="Title"><br>
+					Author:<br>
+					<input type="text" class="form-control" name="Author" placeholder="Author"><br>
+					Genre:<br>
+					<input type="text" class="form-control" name="Genre" placeholder="Genre">
+				</form>
+			</div>
+			<a id="post_book" class="btn btn-primary btn-md claim" href="#" role="button">Post Book</a>
+		</div>
+	</body>
+</html>

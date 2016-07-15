@@ -1,0 +1,29 @@
+.book-back{
+	padding-left: 20em;
+}
+.book-info{
+	margin: 10em;
+}
+.book-pic{
+	max-height: 30em;
+	margin-right: 15px;
+}
+.column{
+	display: table-cell;
+	padding: 10px;
+}
+.claim-container{
+	vertical-align: bottom;
+	width: 25em;
+}
+.claim{
+	position: relative;
+	left: 75em;
+}
+@media screen and (max-width: 55em) {
+.column{
+	display: inherit;
+}
+.claim-container{
+	vertical-align: bottom;
+}
