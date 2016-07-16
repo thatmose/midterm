@@ -5,15 +5,15 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/form.css">
 	</head>
 	<body>
+	<form method="post" action="/books">
 		<h1>Submit your book!</h1>
 		<div class="jumbotron back">
-			
 			<div class="column">
-				<form>
+				
 					Title:<br>
-					<input type="text" class="field" name="Title"><br>
+					<input type="text" class="field" name="title" required><br>
 					Author:<br>
-					<input type="text" class="field" name="Author"><br>
+					<input type="text" class="field" name="author" required><br>
 					Genre:<br>
 					<div class="field">
 						<select type="text" name="genre" id="genre">
@@ -50,7 +50,7 @@
 						</select><br>
 					</div>
 					Photo URL:<br>
-					<input type="url" class="field" name="url">
+					<input type="url" class="field" name="url" required>
 				</div>
 				<div class="column">
 					Rating:<br>
@@ -74,11 +74,12 @@
 						</span>
 					</div><br>
 					Review:<br>
-					<textarea name="review" class="field" rows="9"></textarea>
-				</form>
+					<textarea name="review" class="field" rows="9" required></textarea>
+				
 			</div>
 			<div class="column claim-container">
-				<a id="post_book" class="btn btn-primary btn-md claim" href="#" role="button">Post Book</a>
+				<input type="submit" value="Submit">
 			</div>
 		</div>
+		</form>
 	</body>
