@@ -1,7 +1,32 @@
-<nav>
- <a href="/books/new">Share a New Book</a> 
- <a href="/books/new">Re-share a Book</a> 
- <a href="/books/new">Borrow a Book</a>
-</nav>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+	          <a class="navbar-brand" id="app_name" href="#">bookShare</a>
+	    </div>
+	    <div id="navbar" class="navbar-collapse collapse">
+	    <ul>
+	    	<li class="navbar-left">
+	    		<form method="get" action="/books/new">
+	            	<button type="submit" class="btn btn-success navbar-btn" >Upload Book</button>
+	        	</form>
+	    	</li>
 
-# Users profile page
+			<li class="navbar-left filler"></li>
+
+	    	<li class="navbar-left">
+	    		<form method="get" action="/books/borrowed">
+	            	<button type="submit" class="btn btn-success navbar-btn" >Re-share Book</button>
+	        	</form>
+	    	</li>
+	    	
+	    	<li class="navbar-right">
+	    		<form method="get" action="/logout">
+	            	<button type="submit" class="btn btn-success navbar-btn" >Logout</button>
+	        	</form>
+	    	</li>
+	    </ul>
+	    	
+	        
+	    </div><!--/.navbar-collapse -->
+	</div>
+</nav>

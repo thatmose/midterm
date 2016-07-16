@@ -36,7 +36,7 @@ post "/signup" do
       username: params[:username])
     @user.password = params[:password]
     @user.save!
-    redirect "/login"
+    redirect "/"
   else
     flash[:same_username] = "Username has been taken!"
     erb :"/users/signup"

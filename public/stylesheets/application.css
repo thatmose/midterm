@@ -1,0 +1,20 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+#app_name {
+	color:white;
+	font-size: 45px;
+}
+
+.row.container {
+	background-image: url("../src/book_reading.jpg");
+	background-size: 100%;
+	min-height: 100%;
+	min-width: 100%;
+}
+
+.filler {
+	width: 15px;
+}
