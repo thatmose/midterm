@@ -6,7 +6,7 @@
 			<dd><%= book.title %></dd>
 			<% unless book.pictures.empty? %>
 			    <dt>URL</dt>
-				<dd><a href="<%= book.pictures.url.first %>" target = "_blank"><%= book.pictures.url.first %></a></dd>
+				<dd><a href="<%= book.pictures.first.url %>" target = "_blank"><%= book.pictures.first.url %></a></dd>
 			<% end %>
 			<dt>Genre</dt>
 			<dd><%= book.genre %></dd>

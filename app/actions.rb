@@ -83,10 +83,6 @@ get "/books/new" do
   erb :"/books/new"
 end
 
-get "/books/reupload" do
-  erb :"/books/reupload"
-end
-
 get "/books" do
   @books = Book.all
   erb :"books/index"
@@ -111,11 +107,12 @@ post "/books" do
   @picture.save
   current_user[:books_contributed] += 1
   current_user.save
-  redirect "/books/new"
+  redirect "/profile"
 end
 
 get "/books/borrowed" do
   @my_books = Book.joins(:borrowed_book).where(id: current_user.id)
+  @my_book_count =@my_books.count
   # Replace magic user with current user id
   erb :"/books/borrowed"
 end
