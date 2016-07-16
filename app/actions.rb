@@ -6,7 +6,7 @@ helpers do
   # end
 
   def current_user
-    @user = User.find(6)
+    @user = User.find(1)
   end
   #Don\t know if we will use this yet
   # def logged_in?
@@ -94,6 +94,7 @@ end
 
 get "/books/borrowed" do
   @my_books = Book.joins(:borrowed_book).where(id: current_user.id)
+  # May need to fix this when we get time. Isn't returning id for the borrowed_book (need this to delete entry after returning the book)
   # Replace magic user with current user id
   erb :"/books/borrowed"
 end
@@ -117,3 +118,36 @@ end
 # get '/market' do
 #   erb :market
 # end
+
+get "/posts/add" do
+  @book = Book.find(params[:book_id])
+  erb :"/posts/new"
+end
+
+get "/books/:id" do
+  #This is an orphan for now! Get is a view
+  @book = Book.find(params[:id])
+ # @posts = book.posts
+  erb :"/books/show"
+end
+
+post "/posts" do
+  previous_post = Post.where("user_id = ? AND book_id = ?", current_user.id, params[:book_id])
+  unless previous_post.nil?
+    Post.create(
+      book_id: params[:book_id],
+      user_id: current_user.id,
+      rating: params[:rating],
+      review: params[:review]
+      )
+    redirect "/books/borrowed"
+  end
+    erb :"/books/borrowed"
+end
+
+post "/books/repost/:id" do
+  borrowed_book = BorrowedBook.find_by(book_id: params[:id])
+  borrowed_book && Book.find(params[:book_id]).update(available: true)
+  borrowed_book.destroy
+  redirect "/books/borrowed"
+end

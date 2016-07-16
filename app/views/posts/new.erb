@@ -1,0 +1,10 @@
+<form action="/posts" method="POST">
+	<label for="rating">Rating</label>
+	<input type="number" name="rating" id="rating">
+	<label for="review">Review</label>
+	<input type="text" name="review" id="review">
+	<label for="url">URL</label>
+	<input type="text" name="url" id="url">
+	<input type="hidden" name ="book_id" value="<%= @book.id %>">
+	<button type="submit">Submit</button>
+</form>

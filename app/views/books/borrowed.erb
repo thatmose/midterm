@@ -13,6 +13,16 @@
 				<% end %>
 				<dt>Genre</dt>
 				<dd><%= book.genre %></dd>
+				<form action="/posts/add" method="GET">
+					<input type="hidden" name ="book_id" value="<%= book.id %>">
+					<button type="submit" class="btn btn-default" aria-label="Left Align">Review
+					</button> 
+				</form>
+				<form action="books/repost/<%= book.id %>" method="POST">
+					<input type="hidden" name ="_method" value="DELETE">
+					<button type="submit" class="btn btn-default" aria-label="Left Align">Repost
+					</button> 
+				</form>
 			</dl>
 			<ul class = "book_reviews">
 				<% book.posts.each do |post| %>
