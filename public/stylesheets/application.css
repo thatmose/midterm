@@ -9,7 +9,7 @@ html, body {
 }
 
 .row.container {
-	background-image: url("../src/book_reading.jpg");
+	background-image: url("http://resources3.news.com.au/images/2013/10/04/1226732/659263-woman-reading-a-book.jpg");
 	background-size: 100%;
 	min-height: 100%;
 	min-width: 100%;
@@ -17,4 +17,7 @@ html, body {
 
 .filler {
 	width: 15px;
+}
+#submit {
+  color: green;
 }
