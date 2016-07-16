@@ -3,4 +3,8 @@ class Book < ActiveRecord::Base
   has_many :posts
   has_many :pictures
   has_one :borrowed_book
+
+  validates :title, presence: true
+  validates :author, presence: true
+  
 end
