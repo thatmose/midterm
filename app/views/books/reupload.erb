@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Form Page</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/form.css">
+  </head>
+  <body>
+  <form method="post" action="/books">
+    <h1>Submit your book!</h1>
+    <div class="jumbotron back">
+      <div class="column">
+        
+          Title:<br>
+          <input type="text" class="field" name="title" required><br>
+          Author:<br>
+          <input type="text" class="field" name="author" required><br>
+          Genre:<br>
+          <div class="field">
+            <select type="text" name="genre" id="genre">
+              <option value="Science Fiction">
+                Science Fiction
+              </option>
+              <option value="Satire">
+                Satire
+              </option>
+              <option value="Drama">
+                Drama
+              </option>
+              <option value="Action & Adventure">
+                Action & Adventure
+              </option>
+              <option value="Romance">
+                Romance
+              </option>
+              <option value="Mystery">
+                Mystery
+              </option>
+              <option value="Horror">
+                Horror
+              </option>
+              <option value="Self Help">
+                Self Help
+              </option>
+              <option value="Educational">
+                Educational
+              </option>
+              <option value="Religious">
+                Religious
+              </option>
+            </select><br>
+          </div>
+          Photo URL:<br>
+          <input type="url" class="field" name="url" required>
+        </div>
+        <div class="column">
+          Rating:<br>
+          <div class="field">
+            <span class="rating">
+              <input type="radio" class="rating-input"
+              id="rating-input-1-5" name="rating-input-1"/>
+              <label for="rating-input-1-5" class="rating-star"></label>
+              <input type="radio" class="rating-input"
+              id="rating-input-1-4" name="rating-input-1"/>
+              <label for="rating-input-1-4" class="rating-star"></label>
+              <input type="radio" class="rating-input"
+              id="rating-input-1-3" name="rating-input-1"/>
+              <label for="rating-input-1-3" class="rating-star"></label>
+              <input type="radio" class="rating-input"
+              id="rating-input-1-2" name="rating-input-1"/>
+              <label for="rating-input-1-2" class="rating-star"></label>
+              <input type="radio" class="rating-input"
+              id="rating-input-1-1" name="rating-input-1"/>
+              <label for="rating-input-1-1" class="rating-star"></label>
+            </span>
+          </div><br>
+          Review:<br>
+          <textarea name="review" class="field" rows="9" required></textarea>
+        
+      </div>
+      <div class="column claim-container">
+        <input type="submit" value="Submit">
+      </div>
+    </div>
+    </form>
+  </body>

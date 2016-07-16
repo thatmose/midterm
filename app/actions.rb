@@ -17,7 +17,6 @@ helpers do
 end
 
 # Homepage (Root path)
-
 get "/" do
   erb :index # This is the community market page
 end
@@ -37,11 +36,10 @@ post "/signup" do
       username: params[:username])
     @user.password = params[:password]
     @user.save!
-    redirect "/"
+    redirect "/login"
   else
     flash[:same_username] = "Username has been taken!"
     erb :"/users/signup"
-    
   end
 end
 
@@ -62,7 +60,7 @@ end
 
 get '/logout' do
   session[:user_id] = nil
-  redirect '/login' 
+  redirect '/' 
 end
 
 post "/sessions" do
@@ -85,6 +83,10 @@ get "/books/new" do
   erb :"/books/new"
 end
 
+get "/books/reupload" do
+  erb :"/books/reupload"
+end
+
 get "/books" do
   @books = Book.all
   erb :"books/index"
@@ -94,6 +96,7 @@ post "/books" do
   @book = Book.new(
     title: params[:title],
     author: params[:author],
+    user_id: current_user.id,
     genre: params[:genre])
   @book.save
   @post = Post.new(
