@@ -53,3 +53,22 @@ img {
 	max-height: 120px;
 	overflow: hidden;
 }
+
+/* User*/
+
+.user {
+  top: 50%;
+  width: 35%;
+  height: 100%;
+  float: left;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 2%;
+}
+
+#user {
+  font-style: italic;
+  font-family: Verdana
+  font-size: 30px;
+  color: blue;
+}
