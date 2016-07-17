@@ -1,87 +1,128 @@
-<ul class="books">
-	<% @books.each do |book| %>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+	          <a class="navbar-brand" id="app_name">bookShare</a>
+	  </div>
+	    <div id="navbar" class="navbar-collapse collapse">
+	    <ul>
+	    	<li class="navbar-left">
+	    		<form method="get" action="/books/new">
+	            	<button type="submit" class="btn btn-success navbar-btn" >Upload Book</button>
+	        </form>
+	    	</li>
 
-	<li class="book">
-		<div class="media book">
-		  <div class="media-left book-image">
-		  <% if book.pictures.empty? %>
-			<img class="img-rounded" src="https://placehold.it/200x250">
-		  <% else %>
-		    <a href="<%= book.pictures.first.url %>">
-		      <img class="media-object img-rounded" src="<%= book.pictures.first.url %>" alt="<%= book.title %>">
-		    </a>
-		  <% end %>
-		  </div>
-		  <div class="media-body book-info">
-		    <h4 class="media-heading title">
-			    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
-				  <%= book.title %>
-				</button>
-		    </h4>
-		    <h4 class="media-heading author">by: <%= book.author %></h4>
-		    <h4 class="media-heading genre">Category: <%= book.genre %></h4>
-		    <h4 class="media-heading avg_rating">Ratings:
-		    	<% if @avg_ratings[book.id] && @avg_ratings[book.id] > 0 %>
-		    		<%= @avg_ratings[book.id].to_f.round(1) %> (<%= @review_count[book.id] %> reviews)
-		    	<% else %>
-		    		Not yet rated
-		    	<% end %>
-		    </h4>
-		  </div>
-		</div>
-	</li>
-</ul>
+			<li class="navbar-left filler"></li>
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
- -->
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-book-info" id="book-info">Book Info</h3>
-      </div>
-      <div class="modal-body">
-       <div class="media book">
-			<div class="media-left book-image">
-				<% if book.pictures.empty? %>
-					<img class="img-rounded" src="https://placehold.it/200x250">
-				<% else %>
-					<a href="<%= book.pictures.first.url %>">
-					<img class="media-object img-rounded" src="<%= book.pictures.first.url %>" alt="<%= book.title %>">
-					</a>
-				<% end %>
-				</div>
-				<div class="media-body book-info">
-				    <h4 class="media-heading title"><%= book.title %></h4>
-				    <h4 class="media-heading author">by: <%= book.author %></h4>
-				    <h4 class="media-heading genre">Category: <%= book.genre %></h4>
-				    <h4 class="media-heading avg_rating"> Ratings: 
-				    <% if @avg_ratings[book.id] && @avg_ratings[book.id] > 0 %>
+	    	<li class="navbar-left">
+	    		<form method="get" action="/books/borrowed">
+	            	<button type="submit" class="btn btn-success navbar-btn" >Re-share Book</button>
+	        	</form>
+	    	</li>
+	    	
+	    	<li class="navbar-right">
+	    		<form method="get" action="/logout">
+	            	<button type="submit" class="btn btn-success navbar-btn" >Logout</button>
+	        	</form>
+	    	</li>
+	    </ul>    
+	  </div><!--/.navbar-collapse -->
+	</div>
+</nav>
+
+<div class="market">
+	<ul class="books">
+		<% @books.each do |book| %>
+
+		<li class="book">
+			<div class="media book">
+			  <div class="media-left book-image">
+			  <% if book.pictures.empty? %>
+				<img class="img-rounded" src="https://placehold.it/200x250">
+			  <% else %>
+			    <a href="<%= book.pictures.first.url %>">
+			      <img class="media-object img-rounded" src="<%= book.pictures.first.url %>" alt="<%= book.title %>">
+			    </a>
+			  <% end %>
+			  </div>
+			  <div class="media-body book-info">
+			    <h4 class="media-heading title">
+				    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal<%= book.id %>">
+					  <%= book.title %>
+					</button>
+			    </h4>
+			    <h4 class="media-heading author">by: <%= book.author %></h4>
+			    <h4 class="media-heading genre">Category: <%= book.genre %></h4>
+			    <h4 class="media-heading avg_rating">Ratings:
+			    	<% if @avg_ratings[book.id] && @avg_ratings[book.id] > 0 %>
 			    		<%= @avg_ratings[book.id].to_f.round(1) %> (<%= @review_count[book.id] %> reviews)
 			    	<% else %>
 			    		Not yet rated
 			    	<% end %>
-		  			</h4>
-		  			<form method="post" action="/books/claim/<%= book.id %>">
-		  			<button type="submit" class="btn btn-primary">Claim</button>
-		  			</form>
-		  			<h4 class="media-heading reviews">Reviews</h4>
-		  			<% book.posts.each do |post|%>
-		  				<% post.rating.times do%>
-		  					&#9733
-		  				<% end %>
-        				<p><%= post.review %></p>
-        			<% end %>
-		  		</div>
+			    </h4>
+			  </div>
 			</div>
-		</div>
-      </div>
-    </div> <!-- div end .modal-content -->
-  </div> <!-- div end .modal-dialog -->
-</div> <!-- div end .modal fade -->
-<% end %>
+		</li>
+	</ul>
+
+	<!-- Button trigger modal -->
+	<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	  Launch demo modal
+	</button>
+	 -->
+	<!-- Modal -->
+	<div class="modal fade" id="modal<%= book.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="modal-book-info" id="book-info">Book Info</h3>
+	      </div>
+	      <div class="modal-body">
+	       <div class="media book">
+				<div class="media-left book-image">
+					<% if book.pictures.empty? %>
+						<img class="img-rounded" src="https://placehold.it/200x250">
+					<% else %>
+						<a href="<%= book.pictures.first.url %>">
+						<img class="media-object img-rounded" src="<%= book.pictures.first.url %>" alt="<%= book.title %>">
+						</a>
+					<% end %>
+					</div>
+					<div class="media-body book-info">
+					    <h4 class="media-heading title"><%= book.title %></h4>
+					    <h4 class="media-heading author">by: <%= book.author %></h4>
+					    <h4 class="media-heading genre">Category: <%= book.genre %></h4>
+					    <h4 class="media-heading avg_rating"> Ratings: 
+					    <% if @avg_ratings[book.id] && @avg_ratings[book.id] > 0 %>
+				    		<%= @avg_ratings[book.id].to_f.round(1) %> (<%= @review_count[book.id] %> reviews)
+				    	<% else %>
+				    		Not yet rated
+				    	<% end %>
+			  			</h4>
+			  			<form method="post" action="/books/claim/<%= book.id %>">
+			  			<button type="submit" class="btn btn-primary">Claim</button>
+			  			</form>
+			  			<h4 class="media-heading reviews">Reviews</h4>
+			  			<% if book.posts.empty? %>
+			  				<p> No rating available for this book </p>
+			  			<% else %>
+				  			<% book.posts.each do |post|%>
+				  				<% if post.rating.nil? %>
+				  					<p> No rating available for this book </p>	
+				  				<% else %>
+					  				<% post.rating.times do%>
+					  					&#9733
+					  				<% end %>
+			        				<p><%= post.review %></p>
+			        			<% end %> 
+			        		<% end %>
+		        	<% end %>
+			  		</div>
+				</div>
+			</div>
+	      </div>
+	    </div> <!-- div end .modal-content -->
+	  </div> <!-- div end .modal-dialog -->
+	</div> <!-- div end .modal fade -->
+	<% end %>
+</div>

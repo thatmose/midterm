@@ -62,6 +62,10 @@ img {
 
 }
 
+.market {
+  margin-top: 5%;
+}
+
 /* User*/
 
 .user {
@@ -79,4 +83,14 @@ img {
   font-family: Verdana
   font-size: 30px;
   color: blue;
+}
+
+.borrowed {
+  margin-top: 5%;
+}
+
+/* Signup*/
+
+.signup {
+  margin-top: 5%;
 }
