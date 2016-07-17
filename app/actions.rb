@@ -100,7 +100,6 @@ post "/books" do
     review: params[:review],
     book_id: @book.id,
     user_id: current_user.id)
-  binding.pry
   @post.save
   @picture = Picture.new(
     url: params[:url],
