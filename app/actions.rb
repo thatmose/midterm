@@ -2,13 +2,13 @@ require 'pry'
 enable :sessions
 
 helpers do
-  # def current_user
-  #   @current_user ||= User.find(session[:user_id])
-  # end
-
   def current_user
-    @user = User.find(7)
+    @current_user ||= User.find(session[:user_id])
   end
+
+  # def current_user
+  #   @user = User.find(7)
+  # end
   #Don\t know if we will use this yet
   # def logged_in?
   #   current_user != nil
@@ -113,10 +113,42 @@ post "/books" do
   redirect "/profile"
 end
 
+# get "/books/borrowed" do
+#   @my_books = Book.joins(:borrowed_book).where(user_id: current_user.id)
+#   @my_book_count =@my_books.count
+#   # Replace magic user with current user id
+#   erb :"/books/borrowed"
+# end
+
 get "/books/borrowed" do
-  @my_books = Book.joins(:borrowed_book).where(user_id: current_user.id)
-  @my_book_count =@my_books.count
-  # Replace magic user with current user id
+  @user_email = current_user.email
+  @my_shared_books = current_user.books_contributed
+  @my_books_borrowed = Book.joins(:borrowed_book).where(id: current_user.id)
+  @my_books_borrowed_count = @my_books_borrowed.count
+
+  top_rated = current_user.posts.maximum(:rating)
+  @max_rated = current_user.posts.find_by(rating: top_rated)
+  @max_rated_book = Book.find(@max_rated.book_id)
+  @max_rated_book_url = @max_rated_book.pictures.last.url
+
+  #Code refactor
+
+  # @posts = Post.joins(:user)
+  # posts_hash = {}
+  # @posts_rating = []
+  # @posts.each do |post|
+  #   if post[:rating]
+  #   posts_hash[post[:rating]] = post[:book_id]
+  #   @posts_rating << post[:rating]
+  #   @posts_rating.delete(nil)
+  #   end
+  # end
+
+  # @max_rating = @posts_rating.max
+  # @max_rating_book_id = posts_hash[@max_rating]
+  # @max_rated_book = Book.find(@max_rating_book_id).title
+  # @max_rated_book_url = Picture.find_by(book_id: @max_rating_book_id).url
+
   erb :"/books/borrowed"
 end
 
