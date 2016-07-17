@@ -55,6 +55,13 @@ img {
 	overflow: hidden;
 }
 
+.btn.btn-link {
+	font-weight: bolder;
+	font-size: 18px;
+	padding: 0;
+	
+}
+
 /* User*/
 
 .user {
