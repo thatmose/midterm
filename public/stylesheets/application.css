@@ -21,6 +21,42 @@ html, body {
 #submit {
   color: green;
 }
+
+
+/* Market CSS*/
+
+.media-heading.title {
+	font-weight: bold;
+}
+
+.media-heading.author {
+	font-style: italic;
+}
+
+ul {
+	list-style-type: none;
+}
+
+ul.books {
+	columns: 3;
+}
+
+li.book {
+	display: inline-block !important;
+	vertical-align: top;
+	float: none !important;
+	padding: 2em;
+	overflow: hidden;
+}
+
+img {
+	max-height: 175px;
+	max-height: 120px;
+	overflow: hidden;
+}
+
+/* User*/
+
 .user {
   top: 50%;
   width: 35%;
@@ -30,6 +66,7 @@ html, body {
   border-radius: 5px;
   margin-top: 2%;
 }
+
 #user {
   font-style: italic;
   font-family: Verdana

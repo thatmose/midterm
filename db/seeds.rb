@@ -135,39 +135,39 @@ posts = [
 pictures = [
       {
       book_id: 3,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 8,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 3,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 5,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 9,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 8,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 9,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 7,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    },
       {
       book_id: 7,
-      url: "http://placehold.it/300x250"
+      url: "http://placehold.it/200x250"
    }
 ]
 

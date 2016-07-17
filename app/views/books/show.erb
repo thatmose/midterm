@@ -1,0 +1,24 @@
+<div class="media book">
+	<div class="media-left book-image">
+		<% if @book.pictures.empty? %>
+			<img class="img-rounded" src="https://placehold.it/200x250">
+		<% else %>
+			<a href="<%= @book.pictures.first.url %>">
+			<img class="media-object img-rounded" src="<%= @book.pictures.first.url %>" alt="<%= @book.title %>">
+			</a>
+		<% end %>
+		</div>
+		  <div class="media-body book-info">
+		    <h4 class="media-heading title"><%= @book.title %></h4>
+		    <h4 class="media-heading author">by: <%= @book.author %></h4>
+		    <h4 class="media-heading genre">Category: <%= @book.genre %></h4>
+		    <h4 class="media-heading avg_rating"><!-- Ratings:
+		    	<% if @avg_ratings[@book.id] && @avg_ratings[@book.id] > 0 %>
+		    		<%= @avg_ratings[@book.id].to_f.round(1) %> (<%= @review_count[@book.id] %> reviews)
+		    	<% else %>
+		    		Not yet rated
+		    	<% end %> -->
+		    </h4>
+		  </div>
+	</div>
+</div>
