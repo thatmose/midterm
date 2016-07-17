@@ -151,7 +151,6 @@ get "/books/borrowed" do
 
   erb :"/books/borrowed"
 end
-
 # Can try and use partial for the books and borrowed pages. Almost identical
 
 post "/books/claim" do
