@@ -32,41 +32,17 @@
 
 </div>
 
-
 <ul class="books">
 	<% if @my_books_borrowed_hash.empty? %>
 		<p> Sorry but you do not have any borrowed books!</p>
 	<% else %>
 		<% @my_books_borrowed_hash.each do |book| %>
 			<% b = book.book_id %>
-				<% @books.each do |book1| %>
-					<% if b == book1.id %>
-						<li class="book">
-						<dl class="book_info">
-							<dt>Title</dt>
-							<dd><%= book1.title %></dd>
-							<% unless book1.pictures.empty? %>
-							    <dt>URL</dt>
-								<dd><a href="<%= book1.pictures.first.url %>" target = "_blank"><img src="<%= book1.pictures.first.url %>"></a></dd>
-							<% end %>
-							<dt>Genre</dt>
-							<dd><%= book1.genre %></dd>
-						</dl>
-						<ul class = "book_reviews">
-							<% book1.posts.each do |post| %>
-								<li class="book_review">
-									<dl class="book_review_info">
-										<dt>Rating</dt>
-										<dd><%= post.rating %></dd>
-										<dt>Review</dt>
-										<dd><%= post.review %></dd>
-									</dl>
-								</li>
-							<% end %>
-						</ul>
-						</li>
-					<% end %>	
+			<% @books.each do |book1| %>
+				<% if b == book1.id %>
+					<%= erb :"books/_bookinfo", locals: { book: book1, button_name: @button_name } %>
 				<% end %>
+			<% end %>
 		<% end %>
 	<% end %>
 </ul>

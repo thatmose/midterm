@@ -16,8 +16,10 @@ html, body {
 }
 
 .filler {
-	width: 15px;
+	min-width: 12px;
+	min-height: 12px;
 }
+
 #submit {
   color: green;
 }
@@ -80,13 +82,13 @@ img {
 
 #user {
   font-style: italic;
-  font-family: Verdana
+  font-family: Verdana;
   font-size: 30px;
   color: blue;
 }
 
 .borrowed {
-  margin-top: 5%;
+  margin-top: 10%;
 }
 
 /* Signup*/

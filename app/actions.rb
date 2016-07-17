@@ -85,6 +85,9 @@ end
 
 get "/books" do
   @books = Book.all
+  @button_name = "Claim"
+
+  # If you ever change the ones below, please update /books/borrowed route
   ratings = Post.group(:book_id)
   @review_count = ratings.count
   @avg_ratings = ratings.average(:rating)
@@ -128,6 +131,12 @@ get "/books/borrowed" do
   @my_books_borrowed_count=@my_books_borrowed.count
   @my_books_borrowed_hash = BorrowedBook.joins(:book).where(user_id: current_user.id)
   @books = Book.all
+  @button_name = "Re-Upload"
+
+  ratings = Post.group(:book_id)
+  @review_count = ratings.count
+  @avg_ratings = ratings.average(:rating)
+  @avg_ratings
 
   #if @my_books_borrowed.empty?
    # redirect "/books"
