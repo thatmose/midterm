@@ -15,35 +15,14 @@
 	</div>
 </nav>
 
-<ul class="books">
-	<% if @my_books.empty? %>
-		<p> Sorry but you do not have any borrowed books!</p>
-	<% else %>
-		<% @my_books.each do |book| %>
-		<li class="book">
-			<dl class="book_info">
-				<dt>Title</dt>
-				<dd><%= book.title %></dd>
-				<% unless book.pictures.empty? %>
-				    <dt>URL</dt>
-					<dd><a href="<%= book.pictures.url.first %>" target = "_blank"><%= book.pictures.url.first %></a></dd>
-				<% end %>
-				<dt>Genre</dt>
-				<dd><%= book.genre %></dd>
-			</dl>
-			<ul class = "book_reviews">
-				<% book.posts.each do |post| %>
-					<li class="book_review">
-						<dl class="book_review_info">
-							<dt>Rating</dt>
-							<dd><%= post.rating %></dd>
-							<dt>Review</dt>
-							<dd><%= post.review %></dd>
-						</dl>
-					</li>
-				<% end %>
-			</ul>
-		</li>
-		<% end %>
-	<% end %>
-</ul>
+<div class="user">
+	<p id="user"> Hi <%= @user_email %>! </p>
+
+	<h3> You have shared <%= @my_shared_books %> books </h3>
+	<h3> You currently have <%= @my_books_borrowed_count %> borrowed books </h3>
+	<h3> Your highest book rating is <%= @max_rating %> </h3>
+	<h3> Your best rated book is <%= @max_rated_book %> </h3>
+	<img src="<%= @max_rated_book_url %>"> 
+
+</div>
+

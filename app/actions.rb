@@ -100,6 +100,7 @@ post "/books" do
     review: params[:review],
     book_id: @book.id,
     user_id: current_user.id)
+  binding.pry
   @post.save
   @picture = Picture.new(
     url: params[:url],
@@ -111,12 +112,26 @@ post "/books" do
 end
 
 get "/books/borrowed" do
-  @my_books = Book.joins(:borrowed_book).where(id: current_user.id)
-  @my_book_count =@my_books.count
-  # Replace magic user with current user id
+  @user_email = current_user.email
+  @my_shared_books = current_user.books_contributed
+  @my_books_borrowed = Book.joins(:borrowed_book).where(id: current_user.id)
+  @my_books_borrowed_count =@my_books_borrowed.count
+  @posts = Post.joins(:user)
+  posts_hash = {}
+  @posts_rating = []
+  @posts.each do |post|
+    if post[:rating]
+    posts_hash[post[:rating]] = post[:book_id]
+    @posts_rating << post[:rating]
+    @posts_rating.delete(nil)
+    end
+  end
+  @max_rating = @posts_rating.max
+  @max_rating_book_id = posts_hash[@max_rating]
+  @max_rated_book = Book.find(@max_rating_book_id).title
+  @max_rated_book_url = Picture.find_by(book_id: @max_rating_book_id).url
   erb :"/books/borrowed"
 end
-
 # Can try and use partial for the books and borrowed pages. Almost identical
 
 post "/books/claim" do
