@@ -2,13 +2,13 @@ require 'pry'
 enable :sessions
 
 helpers do
-  def current_user
-    @current_user ||= User.find(session[:user_id])
-  end
-
   # def current_user
-  #   @user = User.find(6)
+  #   @current_user ||= User.find(session[:user_id])
   # end
+
+  def current_user
+    @user = User.find(7)
+  end
   #Don\t know if we will use this yet
   # def logged_in?
   #   current_user != nil
@@ -85,6 +85,9 @@ end
 
 get "/books" do
   @books = Book.all
+  ratings = Post.group(:book_id)
+  @review_count = ratings.count
+  @avg_ratings = ratings.average(:rating)
   erb :"books/index"
 end
 
@@ -111,7 +114,7 @@ post "/books" do
 end
 
 get "/books/borrowed" do
-  @my_books = Book.joins(:borrowed_book).where(id: current_user.id)
+  @my_books = Book.joins(:borrowed_book).where(user_id: current_user.id)
   @my_book_count =@my_books.count
   # Replace magic user with current user id
   erb :"/books/borrowed"
@@ -131,6 +134,12 @@ post "/books/claim" do
     flash.now[:claim_error] = "Something went wrong!"
     erb :"/books"
   end
+end
+
+get "/books/:id" do
+  p params[:id]
+  @book = Book.find(params[:id])
+  erb :"books/show"
 end
 
 get '/market' do
