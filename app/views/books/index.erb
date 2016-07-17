@@ -13,7 +13,12 @@
 		  <% end %>
 		  </div>
 		  <div class="media-body book-info">
-		    <h4 class="media-heading title"><%= book.title %></h4>
+		    <h4 class="media-heading title">
+		    	<form action="/books/<%= book.id %>" method="get">
+		    		<button class="btn btn-link" type="submit"><%= book.title %></button>
+		    	</form>
+
+		    </h4>
 		    <h4 class="media-heading author">by: <%= book.author %></h4>
 		    <h4 class="media-heading genre">Category: <%= book.genre %></h4>
 		    <h4 class="media-heading avg_rating">Ratings:

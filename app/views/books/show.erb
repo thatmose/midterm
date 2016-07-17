@@ -12,12 +12,13 @@
 		    <h4 class="media-heading title"><%= @book.title %></h4>
 		    <h4 class="media-heading author">by: <%= @book.author %></h4>
 		    <h4 class="media-heading genre">Category: <%= @book.genre %></h4>
-		    <h4 class="media-heading avg_rating"><!-- Ratings:
-		    	<% if @avg_ratings[@book.id] && @avg_ratings[@book.id] > 0 %>
-		    		<%= @avg_ratings[@book.id].to_f.round(1) %> (<%= @review_count[@book.id] %> reviews)
-		    	<% else %>
-		    		Not yet rated
-		    	<% end %> -->
+		    <h4 class="media-heading avg_rating"> Ratings: 
+		    <% if @avg_ratings && @avg_ratings > 0 %>
+		    		<%= @avg_ratings.to_f.round(1) %> (<%= @review_count %> reviews)
+		    <% else %>
+		    	Not yet rated
+		    <% end %>
+
 		    </h4>
 		  </div>
 	</div>
