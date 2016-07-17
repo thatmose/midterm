@@ -124,41 +124,44 @@ end
 get "/books/borrowed" do
   @user_email = current_user.email
   @my_shared_books = current_user.books_contributed
-  @my_books_borrowed = Book.joins(:borrowed_book).where(user_id: current_user.id)
+  @my_books_borrowed = BorrowedBook.where(user_id: current_user.id)
+  @my_books_borrowed_count=@my_books_borrowed.count
+  @my_books_borrowed_hash = BorrowedBook.joins(:book).where(user_id: current_user.id)
+  @books = Book.all
 
-  if @my_books_borrowed.empty?
-    redirect "/books"
-  else
-    @my_books_borrowed_count = @my_books_borrowed.count
+  #if @my_books_borrowed.empty?
+   # redirect "/books"
+  #else
+    # @my_books_borrowed_count = @my_books_borrowed.count
 
-    top_rated = current_user.posts.maximum(:rating)
+    # top_rated = current_user.posts.maximum(:rating)
 
-    unless top_rated.nil?
-      @max_rated = current_user.posts.find_by(rating: top_rated)
-      @max_rated_book = Book.find(@max_rated.book_id)
-      @max_rated_book_url = @max_rated_book.pictures.last.url
-    end
+    # unless top_rated.nil?
+    #   @max_rated = current_user.posts.find_by(rating: top_rated)
+    #   @max_rated_book = Book.find(@max_rated.book_id)
+    #   @max_rated_book_url = @max_rated_book.pictures.last.url
+    # end
 
     #Code refactor
 
-    # @posts = Post.joins(:user)
-    # posts_hash = {}
-    # @posts_rating = []
-    # @posts.each do |post|
-    #   if post[:rating]
-    #   posts_hash[post[:rating]] = post[:book_id]
-    #   @posts_rating << post[:rating]
-    #   @posts_rating.delete(nil)
-    #   end
-    # end
+    @posts = Post.joins(:user)
+    posts_hash = {}
+    @posts_rating = []
+    @posts.each do |post|
+      if post[:rating]
+      posts_hash[post[:rating]] = post[:book_id]
+      @posts_rating << post[:rating]
+      @posts_rating.delete(nil)
+      end
+    end
 
-    # @max_rating = @posts_rating.max
-    # @max_rating_book_id = posts_hash[@max_rating]
-    # @max_rated_book = Book.find(@max_rating_book_id).title
-    # @max_rated_book_url = Picture.find_by(book_id: @max_rating_book_id).url
+    @max_rating = @posts_rating.max
+    @max_rating_book_id = posts_hash[@max_rating]
+    @max_rated_book = Book.find(@max_rating_book_id).title
+    @max_rated_book_url = Picture.find_by(book_id: @max_rating_book_id).url
 
     erb :"/books/borrowed"
-  end
+  #end
 end
 # Can try and use partial for the books and borrowed pages. Almost identical
 
