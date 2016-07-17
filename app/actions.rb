@@ -88,6 +88,7 @@ get "/books" do
   ratings = Post.group(:book_id)
   @review_count = ratings.count
   @avg_ratings = ratings.average(:rating)
+  @avg_ratings
   erb :"books/index"
 end
 
@@ -123,7 +124,7 @@ end
 get "/books/borrowed" do
   @user_email = current_user.email
   @my_shared_books = current_user.books_contributed
-  @my_books_borrowed = Book.joins(:borrowed_book).where(id: current_user.id)
+  @my_books_borrowed = Book.joins(:borrowed_book).where(user_id: current_user.id)
 
   if @my_books_borrowed.empty?
     redirect "/books"
@@ -131,9 +132,12 @@ get "/books/borrowed" do
     @my_books_borrowed_count = @my_books_borrowed.count
 
     top_rated = current_user.posts.maximum(:rating)
-    @max_rated = current_user.posts.find_by(rating: top_rated)
-    @max_rated_book = Book.find(@max_rated.book_id)
-    @max_rated_book_url = @max_rated_book.pictures.last.url
+
+    unless top_rated.nil?
+      @max_rated = current_user.posts.find_by(rating: top_rated)
+      @max_rated_book = Book.find(@max_rated.book_id)
+      @max_rated_book_url = @max_rated_book.pictures.last.url
+    end
 
     #Code refactor
 
@@ -153,22 +157,23 @@ get "/books/borrowed" do
     # @max_rated_book = Book.find(@max_rating_book_id).title
     # @max_rated_book_url = Picture.find_by(book_id: @max_rating_book_id).url
 
-    redirect "/books/borrowed"
+    erb :"/books/borrowed"
   end
 end
 # Can try and use partial for the books and borrowed pages. Almost identical
 
-post "/books/claim" do
-  #need to update the book table
-  @borrowed_book = BorrowedBook.new(
-    user_id: current_user.id,
-    book_id: params[:book_id])
-  if @borrowed_book.save!
-    Book.find(params[:book_id]).update(available: false)
-    redirect "/books"
+post "/books/claim/:book_id" do
+  can_borrow = Book.find(params[:book_id]).available
+  if can_borrow
+    #need to update the book table
+    @borrowed_book = BorrowedBook.create(
+      user_id: current_user.id,
+      book_id: params[:book_id])
+      Book.find(params[:book_id]).update(available: false)
+      redirect "/books"
   else
-    flash.now[:claim_error] = "Something went wrong!"
-    erb :"/books"
+      flash.now[:claim_error] = "This book is already borrowed!"
+      erb :"/books/index"
   end
 end
 
