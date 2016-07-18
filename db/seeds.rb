@@ -66,7 +66,65 @@ books = [
       author: "Paolo Coelho",
       genre: "Action",
       available: false
+   },
+     {
+      user_id: 7,
+      title: "In Search of Lost Time",
+      author: "Marcel Proust",
+      genre: "Fiction",
+      available: false
+   },
+      {
+      user_id: 3,
+      title: "Ulysses",
+      author: "James Joyce",
+      genre: "Fiction",
+      available: true
+   },
+      {
+      user_id: 7,
+      title: "Don Quixote",
+      author: "Miguel de Cervantes",
+      genre: "Fiction",
+      available: false
+   },
+      {
+      user_id: 3,
+      title: "Moby Dick",
+      author: "Herman Melville",
+      genre: "History",
+      available: true
+   },
+      {
+      user_id: 6,
+      title: "Hamlet",
+      author: "William Shakespeare",
+      genre: "Fantasy",
+      available: true
+   },
+      
+      {
+      user_id: 6,
+      title: "War and Peace",
+      author: "Leo Tolstoy",
+      genre: "Horror",
+      available: true
+   },
+      {
+      user_id: 1,
+      title: "The Odyssey",
+      author: "Homer",
+      genre: "Action",
+      available: true
+   },
+      {
+      user_id: 7,
+      title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald",
+      genre: "Action",
+      available: false
    }
+
 ]
 
 posts = [
@@ -161,6 +219,42 @@ pictures = [
    },
       {
       book_id: 9,
+      url: "http://ecx.images-amazon.com/images/I/41ZsxDqUW1L.jpg"
+   },
+      {
+      book_id: 10,
+      url: "http://ecx.images-amazon.com/images/I/51wTLf4JVwL.jpg"
+   },
+      {
+      book_id: 11,
+      url: "http://ecx.images-amazon.com/images/I/51fOAX4ILTL.jpg"
+   },
+      {
+      book_id: 12,
+      url: "http://ecx.images-amazon.com/images/I/61di4BjD9tL.jpg"
+   },
+      {
+      book_id: 13,
+      url: "http://ecx.images-amazon.com/images/I/51yChJoybWL.jpg"
+   },
+      {
+      book_id: 14,
+      url: "http://ecx.images-amazon.com/images/I/51KvKtN4qwL.jpg"
+   },
+      {
+      book_id: 15,
+      url: "http://ecx.images-amazon.com/images/I/51SBZ3cKwZL.jpg"
+   },
+      {
+      book_id: 16,
+      url: "http://ecx.images-amazon.com/images/I/51khWutZqCL.jpg"
+   },
+      {
+      book_id: 17,
+      url: "http://d.gr-assets.com/books/1388200541l/3431.jpg"
+   },
+      {
+      book_id: 18,
       url: "http://d.gr-assets.com/books/1388200541l/3431.jpg"
    }
 ]
