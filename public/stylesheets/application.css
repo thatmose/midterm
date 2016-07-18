@@ -97,6 +97,7 @@ img {
   margin-top: 5%;
 }
 
+<<<<<<< HEAD
 /* Book Claim*/
 .alert {
     padding: 20px;
@@ -117,4 +118,9 @@ img {
 
 .closebtn:hover {
     color: black;
+
+/*Reupload Modal*/
+.modal.reupload {
+    z-index: 1500;
+
 }

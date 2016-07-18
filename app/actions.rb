@@ -201,11 +201,14 @@ get "/books/:id" do
   erb :"books/show"
 end
 
-get '/market' do
-  @posts = Post.all.order("created_at DESC")
-  erb :"/market"
-end
-
-get '/form' do 
-  erb :"/form"
+post "/books/reupload/:id" do
+  BorrowedBook.find_by(book_id: params[:id]).delete_all
+  Book.find(params[:id]).update(available: true)
+  Post.create(
+    user_id: current_user.id,
+    book_id: params[:id],
+    rating: params[:rating],
+    reiew: params[:review]
+    )
+  redirect "/books/borrowed"
 end
