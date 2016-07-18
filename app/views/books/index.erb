@@ -31,13 +31,9 @@
 
 <!-- Candidate for partial (check in borrowed books) -->
 
-
-
-
-<div class="market">
 	<ul class="books">
 		<% @books.each do |book| %>
 			<%= erb :"books/_bookinfo", locals: { book: book, button_name: @button_name } %>
 		<% end %>
 	</ul>
-</div>
+
