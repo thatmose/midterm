@@ -87,6 +87,8 @@ get "/books" do
   @books = Book.all
   @button_name = "Claim"
 
+  @users = User.pluck(:id, :username, :email)
+
   # If you ever change the ones below, please update /books/borrowed route
   ratings = Post.group(:book_id)
   @review_count = ratings.count
@@ -185,7 +187,7 @@ post "/books/claim/:book_id" do
       redirect "/books"
   else
       flash.now[:claim_error] = "This book is already borrowed!"
-      erb :"/books/index"
+      redirect "/books"
   end
 end
 
