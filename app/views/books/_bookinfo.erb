@@ -119,7 +119,10 @@
 							  		alert("This book has been successfully added to your Borrowed List.\n Please contact <%= current_user_name %> at <%= current_user_email %> to arrange pick up");
 								}
 							</script>
+							
+							<script>
 
+							</script>
 
 							<% if button_name == "Claim" %>
 								<form method= "post" action="/books/claim/<%= book.id %>">

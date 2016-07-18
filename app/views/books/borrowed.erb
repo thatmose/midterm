@@ -31,7 +31,6 @@
 
 <ul class="books">
 	<% if @my_books_borrowed_hash.empty? %>
-		<p> Sorry but you do not have any borrowed books!</p>
 	<% else %>
 		<% @my_books_borrowed_hash.each do |book| %>
 			<% b = book.book_id %>
