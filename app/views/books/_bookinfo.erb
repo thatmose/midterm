@@ -91,8 +91,8 @@
 						<% if book.pictures.empty? %>
 							<img class="img-rounded" src="https://placehold.it/200x250">
 						<% else %>
-							<a href="<%= book.pictures.first.url %>">
-							<img class="media-object img-rounded" src="<%= book.pictures.first.url %>" alt="<%= book.title %>">
+							<a href="<%= book.pictures.last.url %>">
+							<img class="media-object img-rounded" src="<%= book.pictures.last.url %>" alt="<%= book.title %>">
 							</a>
 						<% end %>
 						</div>
@@ -101,6 +101,12 @@
 						    <h4 class="media-heading author">by: <%= book.author %></h4>
 						    <h4 class="media-heading genre">Category: <%= book.genre %></h4>
 						    <h4 class="media-heading avg_rating"> Ratings: 
+						      <% if book.id && book.user_id%>
+							    <% user_id = Book.joins(:user).find(book.id).user_id %> 
+							    <% current_user_name = User.find(user_id).username %>
+							    <% current_user_email = User.find(user_id).email %>
+							  <% end %>
+
 						    <% if @avg_ratings[book.id] && @avg_ratings[book.id] > 0 %>
 					    		<%= @avg_ratings[book.id].to_f.round(1) %> (<%= @review_count[book.id] %> reviews)
 					    	<% else %>
@@ -108,9 +114,16 @@
 					    	<% end %>
 				  			</h4>
 
+							<script>
+							  	function Alert_<%= book.id %>() {
+							  		alert("This book has been successfully added to your Borrowed List.\n Please contact <%= current_user_name %> at <%= current_user_email %> to arrange pick up");
+								}
+							</script>
+
+
 							<% if button_name == "Claim" %>
 								<form method= "post" action="/books/claim/<%= book.id %>">
-									<button type="submit" class="btn btn-primary"><%= button_name %></button>
+									<button onclick="Alert_<%= book.id %>()" type="submit" class="btn btn-primary"><%= button_name %></button>
 						  		</form>
 							<% elsif button_name == "Re-Upload" %>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUpload<%= book.id %>">
@@ -126,9 +139,11 @@
 					  				<% if post.rating.nil? %>
 					  					<p> No rating available for this book </p>	
 					  				<% else %>
+					  					<p class="star">
 						  				<% post.rating.times do%>
-						  					&#9733
+						  					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						  				<% end %>
+						  				<p>
 				        				<p><%= post.review %></p>
 				        			<% end %> 
 				        		<% end %>
