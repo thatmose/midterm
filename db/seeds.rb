@@ -12,64 +12,58 @@ users = [{email: "grea@fake.com", username: "iceman", password: "test"},
 books = [
       {
       user_id: 7,
-      title: "Tome",
-      author: "jose valdez",
-      genre: "Comic",
-      available: false
-   },
-      {
-      user_id: 3,
-      title: "Pride and Prejudice",
-      author: "liliana mosley",
-      genre: "Biography",
-      available: true
-   },
-      {
-      user_id: 3,
-      title: "Mikey's",
-      author: "semaj davis",
+      title: "The Five People You Meet in Heaven",
+      author: "Mitch Albom",
       genre: "Fiction",
       available: false
    },
       {
+      user_id: 3,
+      title: "The Hunger Games",
+      author: "Suzanne Collins",
+      genre: "Fiction",
+      available: true
+   },
+      {
       user_id: 7,
-      title: "Pride and Prejudice",
-      author: "shelby cole",
-      genre: "Comic",
-      available: true
-   },
-      {
-      user_id: 6,
-      title: "Poetry",
-      author: "nickolas hansen",
-      genre: "Action",
-      available: true
-   },
-      {
-      user_id: 1,
-      title: "Tome",
-      author: "francis hatfield",
-      genre: "Action",
+      title: "Game of Thrones",
+      author: "George R.R. Martin",
+      genre: "Fiction",
       available: false
    },
       {
+      user_id: 3,
+      title: "Pride and Prejudice",
+      author: "Jane Austen",
+      genre: "History",
+      available: true
+   },
+      {
       user_id: 6,
-      title: "James Bond",
-      author: "kiersten buckley",
+      title: "The Hobbit",
+      author: "J.R.R Tolkien",
+      genre: "Fantasy",
+      available: true
+   },
+      
+      {
+      user_id: 6,
+      title: "To Kill a Mockingbird",
+      author: "Harper Lee",
       genre: "Horror",
       available: true
    },
       {
       user_id: 1,
-      title: "Poetry",
-      author: "julieta potts",
+      title: "The Art of War",
+      author: "Sun Tzu",
       genre: "Action",
       available: true
    },
       {
       user_id: 7,
-      title: "Poetry",
-      author: "rowen ferrell",
+      title: "The Alchemist",
+      author: "Paolo Coelho",
       genre: "Action",
       available: false
    }
@@ -134,40 +128,40 @@ posts = [
 
 pictures = [
       {
-      book_id: 3,
-      url: "http://placehold.it/200x250"
+      book_id: 1,
+      url: "http://d.gr-assets.com/books/1388200541l/3431.jpg"
    },
       {
-      book_id: 8,
-      url: "http://placehold.it/200x250"
+      book_id: 2,
+      url: "http://static.oprah.com/images/o2/201503/201503-book-hunger-games-949x1356.jpg"
    },
       {
       book_id: 3,
-      url: "http://placehold.it/200x250"
+      url: "http://vignette1.wikia.nocookie.net/iceandfire/images/b/b6/Game_of_thrones.jpeg/revision/latest?cb=20130302001049"
+   },
+      {
+      book_id: 4,
+      url: "http://www.publicbookshelf.com/images/PridePrejudice423x630.jpg"
    },
       {
       book_id: 5,
-      url: "http://placehold.it/200x250"
+      url: "https://upload.wikimedia.org/wikipedia/en/3/30/Hobbit_cover.JPG"
    },
       {
-      book_id: 9,
-      url: "http://placehold.it/200x250"
+      book_id: 6,
+      url: "https://upload.wikimedia.org/wikipedia/en/7/79/To_Kill_a_Mockingbird.JPG"
+   },
+      {
+      book_id: 7,
+      url: "http://www.freebooks.com/wp-content/uploads/2013/04/The-Art-of-War.jpg"
    },
       {
       book_id: 8,
-      url: "http://placehold.it/200x250"
+      url: "http://prodimage.images-bn.com/pimages/9780062315007_p0_v2_s192x300.jpg"
    },
       {
       book_id: 9,
-      url: "http://placehold.it/200x250"
-   },
-      {
-      book_id: 7,
-      url: "http://placehold.it/200x250"
-   },
-      {
-      book_id: 7,
-      url: "http://placehold.it/200x250"
+      url: "http://d.gr-assets.com/books/1388200541l/3431.jpg"
    }
 ]
 
