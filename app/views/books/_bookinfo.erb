@@ -100,7 +100,12 @@
 						    <h4 class="media-heading title"><%= book.title %></h4>
 						    <h4 class="media-heading author">by: <%= book.author %></h4>
 						    <h4 class="media-heading genre">Category: <%= book.genre %></h4>
-						    <h4 class="media-heading avg_rating"> Ratings: 
+						    <h4 class="media-heading avg_rating"> Ratings:
+						    <% if book.id && book.user_id%>
+							    <% user_id = Book.joins(:user).find(book.id).user_id %> 
+							    <% current_user_name = User.find(user_id).username %>
+							    <% current_user_email = User.find(user_id).email %>
+							  <% end %>
 						    <% if @avg_ratings[book.id] && @avg_ratings[book.id] > 0 %>
 					    		<%= @avg_ratings[book.id].to_f.round(1) %> (<%= @review_count[book.id] %> reviews)
 					    	<% else %>
@@ -108,10 +113,19 @@
 					    	<% end %>
 				  			</h4>
 
+									<script class="alert">
+							  		
+										function Alert_<%= book.id %>() {
+										    alert("This book has been successfully added to your  Borrowed List. Please contact <%= current_user_name %> at <%= current_user_email %> to arrange pick up");
+										}
+										</script>
+
 							<% if button_name == "Claim" %>
 								<form method= "post" action="/books/claim/<%= book.id %>">
-									<button type="submit" class="btn btn-primary"><%= button_name %></button>
+									<button onclick="Alert_<%= book.id %>()" type="submit" class="btn btn-primary"><%= button_name %></button>
 						  		</form>
+							  		
+						  		
 							<% elsif button_name == "Re-Upload" %>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUpload<%= book.id %>">
 					  <%= button_name %>
