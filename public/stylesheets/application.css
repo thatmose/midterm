@@ -96,3 +96,8 @@ img {
 .signup {
   margin-top: 5%;
 }
+
+/*Reupload Modal*/
+.modal.reupload {
+    z-index: 1500;
+}
