@@ -114,7 +114,7 @@ post "/books" do
   @picture.save
   current_user[:books_contributed] += 1
   current_user.save
-  redirect "/profile"
+  redirect "/books"
 end
 
 # get "/books/borrowed" do
@@ -182,7 +182,7 @@ post "/books/claim/:book_id" do
       user_id: current_user.id,
       book_id: params[:book_id])
       Book.find(params[:book_id]).update(available: false)
-      redirect "/books"
+      redirect "/books/borrowed"
   else
       flash.now[:claim_error] = "This book is already borrowed!"
       redirect "/books"
@@ -200,13 +200,16 @@ get "/books/:id" do
 end
 
 post "/books/reupload/:id" do
-  BorrowedBook.find_by(book_id: params[:id]).delete_all
+  BorrowedBook.find_by(book_id: params[:id]).delete
   Book.find(params[:id]).update(available: true)
   Post.create(
     user_id: current_user.id,
     book_id: params[:id],
     rating: params[:rating],
-    reiew: params[:review]
+    review: params[:review]
     )
+  Picture.create(
+    url: params[:url],
+    book_id: params[:id])
   redirect "/books/borrowed"
 end

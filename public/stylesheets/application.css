@@ -41,6 +41,7 @@ ul {
 
 ul.books {
 	columns: 3;
+	margin-top: 5%;
 }
 
 li.book {
