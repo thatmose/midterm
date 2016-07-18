@@ -27,6 +27,11 @@ html, body {
 
 /* Market CSS*/
 
+.glyphicon.glyphicon-star {
+    font-size: 20px;
+    color: red;
+}
+
 .media-heading.title {
 	font-weight: bold;
 }
