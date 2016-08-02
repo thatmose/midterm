@@ -1,17 +1,29 @@
-Sinatra
-=============
+# Summary
 
-Brought to you by Lighthouse Labs
+Booksharing app where users can post and borrow books from each other.
 
-## Getting Started
+###Technologies used
+* Sinatra (back-end framework)
+* Bootstrap (front-end framework)
+* SQLite3 (test and development database)
+* PostgreSQL (production database)
 
-1. `bundle install`
-2. `shotgun -p 3000 -o 0.0.0.0`
-3. Visit `http://localhost:3000/` in your browser
+###Learning outcomes
+* Importance of unit testing for edge cases
+* Utility of partials to render repetitive views
+* RESTful routes
+* User authetication
+* ERD and database queries
+
+###Stretch goals (if we had more time/ knowledge at the time)
+* Implement AJAX for async page updates
+* Admin account to oversee users and interactions
+* Messaging system within the app to facilitate contact during borrowing transactions
+
 
 MIDTERM PROJECT
 ===================
-# Outline of Stuff
+# Outline
 Booksharing app Planning 
   - Marketplace app post books for sharing exchange
 
@@ -49,7 +61,6 @@ SQLite3
 
 ## ROUTES
 * Try to follow RESTful conventions
-* Notes available from Monica's class on July 14 (Has a lot of examples)
 
 ## WIREFRAMES
 
